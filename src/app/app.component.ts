@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'lazy-comp-dialog';
+  constructor(public dialog: MatDialog) {
+  }
+
+  async open(): Promise<void> {
+    const { MyDialogComponent } = await import('./my-dialog/my-dialog.component');
+    this.dialog.open(MyDialogComponent);
+  }
+
 }
